@@ -152,6 +152,14 @@ class Git < Formula
     etc.install "gitconfig"
   end
 
+  def caveats; <<~EOS
+    Sending email via git send-email requires the Perl Net::SMTP::SSL module.
+    If your system Perl does not already have it, you can install it via:
+
+      sudo /usr/bin/cpan Net::SMTP::SSL
+  EOS
+  end
+
   test do
     system bin/"git", "init"
     %w[haunted house].each { |f| touch testpath/f }
